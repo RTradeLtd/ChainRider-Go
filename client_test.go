@@ -52,11 +52,17 @@ func TestChainRiderGo(t *testing.T) {
 		fmt.Printf("%+v\n", resp)
 	}
 
-	if resp, err := c.TransactionForAddress(testAddress); err != nil {
+	if resp, err := c.TransactionsForAddress(testAddress); err != nil {
 		t.Fatal(err)
 	} else if resp == nil {
 		t.Fatal("resp is nil but no error occured, unexpected issue")
 	} else {
 		fmt.Printf("%+v\n", resp)
+	}
+
+	if balance, err := c.BalanceForAddress(testAddress); err != nil {
+		t.Fatal(err)
+	} else {
+		fmt.Println(balance)
 	}
 }
