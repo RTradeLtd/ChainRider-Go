@@ -116,3 +116,22 @@ type TransactionsForAddressResponse struct {
 	PagesTotal   int                         `json:"pagesTotal"`
 	Transactions []TransactionByHashResponse `json:"txs"`
 }
+
+// BlockByHash is information fro a particular block
+type BlockByHashResponse struct {
+	Hash              string      `json:"hash"`
+	Size              int         `json:"size"`
+	Height            int         `json:"height"`
+	Version           int         `json:"version"`
+	MerkleRoot        string      `json:"merkleroot"`
+	Tx                []string    `json:"tx"`
+	Time              int         `json:"time"`
+	Bits              string      `json:"bits"`
+	ChainWork         string      `json:"chainwork"`
+	Confirmations     int         `json:"confirmations"`
+	PreviousBlockHash string      `json:"previousblockhash"`
+	NextBlockHash     string      `json:"nextblockhash"`
+	Reward            string      `json:"reward"`
+	IsMainChain       bool        `json:"isMainChain"`
+	PoolInfo          interface{} `json:"poolInfo"`
+}

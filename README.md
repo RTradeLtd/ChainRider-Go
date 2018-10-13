@@ -16,6 +16,10 @@ Examples:
 
 ## Supported Calls
 
+At the moment, only DASH is supported
+
+### DASH
+
 * `POST /v1/ratelimit/`
 * `GET /status?q=getInfo` 
 * `GET /tx/<tx_hash>`
