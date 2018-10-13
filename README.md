@@ -13,3 +13,9 @@ The url pattern for chain rider is as follows:
 Examples:
 * `https://api-dot-chainrider.io/v1/dash/main`
 * `https://api-dot-chainrider.io/v1/dash/testnet`
+
+## Supported Calls
+
+* `POST /v1/ratelimit/`
+* `GET /status?q=getInfo` 
+* `GET /tx/<tx_hash>`
