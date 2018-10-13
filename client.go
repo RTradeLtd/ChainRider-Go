@@ -99,3 +99,25 @@ func (c *Client) TransactionByHash(txHash string) (*TransactionByHashResponse, e
 	}
 	return &intf, nil
 }
+
+func (c *Client) TransactionForAddress(address string) (*TransactionsForAddressResponse, error) {
+	url := fmt.Sprintf("%s/txs?address=%s&token=%s", c.URL, address, c.Token)
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Add("Content-Type", "application/json")
+	resp, err := c.HC.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	intf := TransactionsForAddressResponse{}
+	if err = json.Unmarshal(bodyBytes, &intf); err != nil {
+		return nil, err
+	}
+	return &intf, nil
+}

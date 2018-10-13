@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	testTxHash = "e71dc1a959a80956ac5dfb385e4113203ba8636ba61cc6fd7c2c41d99026ff48"
+	testTxHash  = "e71dc1a959a80956ac5dfb385e4113203ba8636ba61cc6fd7c2c41d99026ff48"
+	testAddress = "XrWe3E96h7QDRkvwgqY4LmdPBE9txYPfrV"
 )
 
 func TestChainRiderGo(t *testing.T) {
@@ -44,6 +45,14 @@ func TestChainRiderGo(t *testing.T) {
 	}
 
 	if resp, err := c.TransactionByHash(testTxHash); err != nil {
+		t.Fatal(err)
+	} else if resp == nil {
+		t.Fatal("resp is nil but no error occured, unexpected issue")
+	} else {
+		fmt.Printf("%+v\n", resp)
+	}
+
+	if resp, err := c.TransactionForAddress(testAddress); err != nil {
 		t.Fatal(err)
 	} else if resp == nil {
 		t.Fatal("resp is nil but no error occured, unexpected issue")

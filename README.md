@@ -19,3 +19,4 @@ Examples:
 * `POST /v1/ratelimit/`
 * `GET /status?q=getInfo` 
 * `GET /tx/<tx_hash>`
+* `GET /txns` (partial support)

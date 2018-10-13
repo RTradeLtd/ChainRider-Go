@@ -105,3 +105,8 @@ type TransactionByHashResponse struct {
 	Fees          float64 `json:"fees"`
 	TxLock        bool    `json:"txlock"`
 }
+
+type TransactionsForAddressResponse struct {
+	PagesTotal   int                         `json:"pagesTotal"`
+	Transactions []TransactionByHashResponse `json:"txs"`
+}
