@@ -4,6 +4,7 @@ import (
 	"net/http"
 )
 
+// Client is how we interact with the chain rider api
 type Client struct {
 	URL     string `json:"url"`
 	Payload string `json:"payload"`
@@ -11,6 +12,7 @@ type Client struct {
 	HC      *http.Client
 }
 
+// ConfigOpts are the configuration options for our session with teh api
 type ConfigOpts struct {
 	APIVersion      string `json:"api_version"`
 	DigitalCurrency string `json:"digital_currency"`
@@ -27,6 +29,7 @@ const (
 	defaultBlockchain      = "testnet"
 )
 
+// RateLimitResponse is the response given by the rate limit request
 type RateLimitResponse struct {
 	Message struct {
 		Hour struct {
@@ -47,6 +50,7 @@ type RateLimitResponse struct {
 	} `json:"message"`
 }
 
+// InformationResponse is the resposne from the information request
 type InformationResponse struct {
 	Info struct {
 		Version         int     `json:"version"`
@@ -64,6 +68,7 @@ type InformationResponse struct {
 	} `json:"info"`
 }
 
+// TransactionByHashResponse is a response for a given transaction hash request
 type TransactionByHashResponse struct {
 	TxID     string `json:"txid"`
 	Version  int    `json:"version"`
@@ -106,6 +111,7 @@ type TransactionByHashResponse struct {
 	TxLock        bool    `json:"txlock"`
 }
 
+// TransactionsForAddressResposne is a collection of multiple transactions
 type TransactionsForAddressResponse struct {
 	PagesTotal   int                         `json:"pagesTotal"`
 	Transactions []TransactionByHashResponse `json:"txs"`
