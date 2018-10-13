@@ -63,3 +63,45 @@ type InformationResponse struct {
 		Network         string  `json:"network"`
 	} `json:"info"`
 }
+
+type TransactionByHashResponse struct {
+	TxID     string `json:"txid"`
+	Version  int    `json:"version"`
+	Locktime int    `json:"locktime"`
+	Vin      []struct {
+		TxID      string `json:"txid"`
+		Vout      int    `json:"vout"`
+		N         int    `json:"n"`
+		ScriptSig struct {
+			Hex string `json:"hex"`
+			Asm string `json:"asm"`
+		} `json:"scriptsig"`
+		Addr            string  `json:"addr"`
+		ValueSat        int     `json:"valueSat"`
+		Value           float64 `json:"value"`
+		DoubleSpentTxID string  `json:"doubleSpentTxID,omitempty"`
+	} `json:"vin"`
+	Vout []struct {
+		Value        string `json:"value"` // this might need to be a string
+		N            int    `json:"n"`
+		ScriptPubKey struct {
+			Hex       string   `json:"hex"`
+			Asm       string   `json:"asm"`
+			Addresses []string `json:"addresses"`
+			Type      string   `json:"type"`
+		} `json:"scriptPubKey"`
+		SpentTxID   string `json:"spentTxId"`
+		SpentIndex  int    `json:"spentIndex"`
+		SpentHeight int    `json:"spentHeight"`
+	} `json:"vout"`
+	BlockHash     string  `json:"blockhash"`
+	BlockHeight   int     `json:"blockheight"`
+	Confirmations int     `json:"confirmations"`
+	Time          int     `json:"time"`      // looks like its unix timestamp
+	BlockTime     int     `json:"blocktime"` // looks like its unix timestamps
+	ValueOut      float64 `json:"valueOut"`
+	Size          int     `json:"size"`
+	ValueIn       float64 `json:"valueIn"`
+	Fees          float64 `json:"fees"`
+	TxLock        bool    `json:"txlock"`
+}

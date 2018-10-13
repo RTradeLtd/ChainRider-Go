@@ -8,6 +8,10 @@ import (
 	chainridergo "github.com/RTradeLtd/ChainRider-Go"
 )
 
+const (
+	testTxHash = "e71dc1a959a80956ac5dfb385e4113203ba8636ba61cc6fd7c2c41d99026ff48"
+)
+
 func TestChainRiderGo(t *testing.T) {
 	token := os.Getenv("TOKEN")
 	if token == "" {
@@ -16,7 +20,7 @@ func TestChainRiderGo(t *testing.T) {
 	opts := chainridergo.ConfigOpts{
 		APIVersion:      "v1",
 		DigitalCurrency: "dash",
-		Blockchain:      "testnet",
+		Blockchain:      "main",
 		Token:           token,
 	}
 	c, err := chainridergo.NewClient(&opts)
@@ -32,6 +36,14 @@ func TestChainRiderGo(t *testing.T) {
 	}
 
 	if resp, err := c.GetInformation(); err != nil {
+		t.Fatal(err)
+	} else if resp == nil {
+		t.Fatal("resp is nil but no error occured, unexpected issue")
+	} else {
+		fmt.Printf("%+v\n", resp)
+	}
+
+	if resp, err := c.TransactionByHash(testTxHash); err != nil {
 		t.Fatal(err)
 	} else if resp == nil {
 		t.Fatal("resp is nil but no error occured, unexpected issue")
