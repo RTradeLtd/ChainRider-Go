@@ -25,3 +25,4 @@ At the moment, only DASH is supported
 * `GET /tx/<tx_hash>`
 * `GET /txns` (partial support)
 * `GET /addr/<address>/balance`
+* `GET /block/<block_hash>`
