@@ -30,4 +30,12 @@ func TestChainRiderGo(t *testing.T) {
 	} else {
 		fmt.Printf("%+v\n", resp)
 	}
+
+	if resp, err := c.GetInformation(); err != nil {
+		t.Fatal(err)
+	} else if resp == nil {
+		t.Fatal("resp is nil but no error occured, unexpected issue")
+	} else {
+		fmt.Printf("%+v\n", resp)
+	}
 }

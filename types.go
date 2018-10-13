@@ -46,3 +46,20 @@ type RateLimitResponse struct {
 		} `json:"forward"`
 	} `json:"message"`
 }
+
+type InformationResponse struct {
+	Info struct {
+		Version         int     `json:"version"`
+		InsightVerison  string  `json:"insightversion"`
+		ProtocolVersion int     `json:"protocolversion"`
+		Blocks          int     `json:"blocks"`
+		TimeOffset      int     `json:"timeoffset"`
+		Connections     int     `json:"connections"`
+		Proxy           string  `json:"proxy"`
+		Difficulty      float64 `json:"difficulty"`
+		Testnet         bool    `json:"testnet"`
+		RelayFee        float64 `json:"relayfee"`
+		Errors          string  `json:"errors"`
+		Network         string  `json:"network"`
+	} `json:"info"`
+}
