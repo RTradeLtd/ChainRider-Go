@@ -26,3 +26,5 @@ At the moment, only DASH is supported
 * `GET /txns` (partial support)
 * `GET /addr/<address>/balance`
 * `GET /block/<block_hash>`
+* `GET /status?q=getLastBlockHash`
+* `GET /sync`

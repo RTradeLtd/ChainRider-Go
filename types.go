@@ -135,3 +135,19 @@ type BlockByHashResponse struct {
 	IsMainChain       bool        `json:"isMainChain"`
 	PoolInfo          interface{} `json:"poolInfo"`
 }
+
+// LastBlockHashResponse is a resposne from the last block hash call
+type LastBlockHashResponse struct {
+	SyncTipHash   string `json:"syncTipHash"`
+	LastBlockHash string `json:"lastblockhash"`
+}
+
+// BlockchainDataSyncStatusResponse is a response from the blockchain data sync call
+type BlockchainDataSyncStatusResponse struct {
+	Status           string `json:"status"`
+	BlockchainHeight int    `json:"blockChainHeight"`
+	SyncPercentage   int    `json:"syncPercentage"`
+	Height           int    `json:"height"`
+	Error            string `json:"error"`
+	Type             string `json:"type"`
+}

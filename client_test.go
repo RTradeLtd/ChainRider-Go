@@ -37,7 +37,7 @@ func TestChainRiderGo(t *testing.T) {
 	} else {
 		fmt.Printf("%+v\n", resp)
 	}
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 2)
 	if resp, err := c.GetInformation(); err != nil {
 		t.Fatal(err)
 	} else if resp == nil {
@@ -45,7 +45,7 @@ func TestChainRiderGo(t *testing.T) {
 	} else {
 		fmt.Printf("%+v\n", resp)
 	}
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 2)
 	if resp, err := c.TransactionByHash(testTxHash); err != nil {
 		t.Fatal(err)
 	} else if resp == nil {
@@ -53,7 +53,7 @@ func TestChainRiderGo(t *testing.T) {
 	} else {
 		fmt.Printf("%+v\n", resp)
 	}
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 2)
 	if resp, err := c.TransactionsForAddress(testAddress); err != nil {
 		t.Fatal(err)
 	} else if resp == nil {
@@ -61,14 +61,30 @@ func TestChainRiderGo(t *testing.T) {
 	} else {
 		fmt.Printf("%+v\n", resp)
 	}
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 2)
 	if balance, err := c.BalanceForAddress(testAddress); err != nil {
 		t.Fatal(err)
 	} else {
 		fmt.Println(balance)
 	}
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 2)
 	if resp, err := c.GetBlockByHash(testBlockHash); err != nil {
+		t.Fatal(err)
+	} else if resp == nil {
+		t.Fatal("resp is nil but no error occured, unexpected issue")
+	} else {
+		fmt.Printf("%+v\n", resp)
+	}
+	time.Sleep(time.Second * 2)
+	if resp, err := c.GetLastBlockHash(); err != nil {
+		t.Fatal(err)
+	} else if resp == nil {
+		t.Fatal("resp is nil but no error occured, unexpected issue")
+	} else {
+		fmt.Printf("%+v\n", resp)
+	}
+	time.Sleep(time.Second * 2)
+	if resp, err := c.GetBlockchainSyncStatus(); err != nil {
 		t.Fatal(err)
 	} else if resp == nil {
 		t.Fatal("resp is nil but no error occured, unexpected issue")
