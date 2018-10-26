@@ -154,7 +154,28 @@ type BlockchainDataSyncStatusResponse struct {
 type CreatePaymentForwardResponse struct {
 	PaymentForwardID     string  `json:"paymentforward_id"`
 	PaymentAddress       string  `json:"payment_address"`
-	CommissionAddress    string  `json:"commission_address"`
+	DestinationAddress   string  `json:"destination_address"`
 	CommissionFeePercent float64 `json:"commission_fee_percent"`
 	MiningFeeDuffs       int     `json:"mining_fee_duffs"`
+}
+
+// GetPaymentForwardByIDResponse is a response a from get payment forward by id
+type GetPaymentForwardByIDResponse struct {
+	PaymentForwardID     string              `json:"paymentforward_id"`
+	PaymentAddress       string              `json:"payment_address"`
+	DestinationAddress   string              `json:"destination_address"`
+	CommissionAddress    string              `json:"commission_address"`
+	CommissionFeePercent float64             `json:"commission_fee_percent"`
+	CreatedDate          string              `json:"created_date"`
+	CallbackURL          string              `json:"callback_url"`
+	MiningFeeDuffs       int                 `json:"mining_fee_duffs"`
+	ProcessedTxs         []ProcessedTxObject `json:"processed_txs"`
+}
+
+// ProcessedTxObject is a transaction that has been processed for a payment forward
+type ProcessedTxObject struct {
+	InputTransactionHash string `json:"input_transaction_hash"`
+	ReceivedAmountDuffs  int    `json:"received_amount_duffs"`
+	TransactionHash      string `json:"transaction_hash"`
+	ProcessedDate        string `json:"processed_date"`
 }

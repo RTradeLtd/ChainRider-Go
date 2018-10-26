@@ -10,9 +10,11 @@ import (
 )
 
 const (
-	testTxHash    = "e71dc1a959a80956ac5dfb385e4113203ba8636ba61cc6fd7c2c41d99026ff48"
-	testAddress   = "XrWe3E96h7QDRkvwgqY4LmdPBE9txYPfrV"
-	testBlockHash = "0000000000000004689b8833fa05a687a042650e4f4e8da9953a5e0dba5fc1a0"
+	testTxHash             = "e71dc1a959a80956ac5dfb385e4113203ba8636ba61cc6fd7c2c41d99026ff48"
+	testAddress            = "XrWe3E96h7QDRkvwgqY4LmdPBE9txYPfrV"
+	testBlockHash          = "0000000000000004689b8833fa05a687a042650e4f4e8da9953a5e0dba5fc1a0"
+	testDestinationAddress = "yfLFuyfSNHNtwKbfaGXh17maGKAAgd2A4z"
+	testPaymentForwardID   = "9risbkgOTkKHq18X198zikCza8GuTJfO"
 )
 
 func TestChainRiderGo(t *testing.T) {
@@ -23,12 +25,28 @@ func TestChainRiderGo(t *testing.T) {
 	opts := dash.ConfigOpts{
 		APIVersion:      "v1",
 		DigitalCurrency: "dash",
-		Blockchain:      "main",
+		Blockchain:      "testnet",
 		Token:           token,
 	}
 	c, err := dash.NewClient(&opts)
 	if err != nil {
 		t.Fatal(err)
+	}
+	if resp, err := c.GetPaymentForwardByID(testPaymentForwardID); err != nil {
+		t.Fatal(err)
+	} else if resp == nil {
+		t.Fatal("resp is nil but no error occured, unexpected issue")
+	} else {
+		fmt.Printf("%+v\n", resp)
+	}
+
+	t.Skip()
+	if resp, err := c.CreatePaymentForward(&dash.PaymentForwardOpts{DestinationAddress: testDestinationAddress}); err != nil {
+		t.Fatal(err)
+	} else if resp == nil {
+		t.Fatal("resp is nil but no error occured, unexpected issue")
+	} else {
+		fmt.Printf("%+v\n", resp)
 	}
 	if resp, err := c.GetRateLimit(); err != nil {
 		t.Fatal(err)
