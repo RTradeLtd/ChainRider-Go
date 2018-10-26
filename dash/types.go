@@ -177,5 +177,6 @@ type ProcessedTxObject struct {
 	InputTransactionHash string `json:"input_transaction_hash"`
 	ReceivedAmountDuffs  int    `json:"received_amount_duffs"`
 	TransactionHash      string `json:"transaction_hash"`
-	ProcessedDate        string `json:"processed_date"`
+	// time at which the payment was forwarded
+	ProcessedDate string `json:"processed_date"`
 }
