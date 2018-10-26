@@ -1,8 +1,6 @@
-package chainridergo
+package dash
 
-import (
-	"net/http"
-)
+import "net/http"
 
 // Client is how we interact with the chain rider api
 type Client struct {
@@ -111,13 +109,13 @@ type TransactionByHashResponse struct {
 	TxLock        bool    `json:"txlock"`
 }
 
-// TransactionsForAddressResposne is a collection of multiple transactions
+// TransactionsForAddressResponse is a collection of multiple transactions
 type TransactionsForAddressResponse struct {
 	PagesTotal   int                         `json:"pagesTotal"`
 	Transactions []TransactionByHashResponse `json:"txs"`
 }
 
-// BlockByHash is information fro a particular block
+// BlockByHashResponse is information fro a particular block
 type BlockByHashResponse struct {
 	Hash              string      `json:"hash"`
 	Size              int         `json:"size"`
@@ -150,4 +148,13 @@ type BlockchainDataSyncStatusResponse struct {
 	Height           int    `json:"height"`
 	Error            string `json:"error"`
 	Type             string `json:"type"`
+}
+
+// CreatePaymentForwardResponse is a resposne from the create payment forward call
+type CreatePaymentForwardResponse struct {
+	PaymentForwardID     string  `json:"paymentforward_id"`
+	PaymentAddress       string  `json:"payment_address"`
+	CommissionAddress    string  `json:"commission_address"`
+	CommissionFeePercent float64 `json:"commission_fee_percent"`
+	MiningFeeDuffs       int     `json:"mining_fee_duffs"`
 }

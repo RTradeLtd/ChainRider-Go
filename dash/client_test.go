@@ -1,4 +1,4 @@
-package chainridergo_test
+package dash_test
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	chainridergo "github.com/RTradeLtd/ChainRider-Go"
+	"github.com/RTradeLtd/ChainRider-Go/dash"
 )
 
 const (
@@ -20,13 +20,13 @@ func TestChainRiderGo(t *testing.T) {
 	if token == "" {
 		t.Fatal("TOKEN env var is empty")
 	}
-	opts := chainridergo.ConfigOpts{
+	opts := dash.ConfigOpts{
 		APIVersion:      "v1",
 		DigitalCurrency: "dash",
 		Blockchain:      "main",
 		Token:           token,
 	}
-	c, err := chainridergo.NewClient(&opts)
+	c, err := dash.NewClient(&opts)
 	if err != nil {
 		t.Fatal(err)
 	}
