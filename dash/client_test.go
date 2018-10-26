@@ -37,7 +37,12 @@ func TestChainRiderGo(t *testing.T) {
 	} else if resp == nil {
 		t.Fatal("resp is nil but no error occured, unexpected issue")
 	} else {
-		fmt.Printf("%+v\n", resp)
+		layout := "2006-01-02T15:04:05.000Z"
+		parsedTime, err := time.Parse(layout, resp.ProcessedTxs[0].ProcessedDate)
+		if err != nil {
+			t.Fatal(err)
+		}
+		fmt.Println(parsedTime)
 	}
 
 	t.Skip()
