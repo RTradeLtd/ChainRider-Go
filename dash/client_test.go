@@ -32,6 +32,19 @@ func TestChainRiderGo(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	var forwardID string
+	if resp, err := c.CreatePaymentForward(&dash.PaymentForwardOpts{DestinationAddress: testDestinationAddress}); err != nil {
+		t.Fatal(err)
+	} else if resp == nil {
+		t.Fatal("resp is nil but no error occured, unexpected issue")
+	} else {
+		forwardID = resp.PaymentForwardID
+		fmt.Printf("%+v\n", resp)
+	}
+	if err = c.DeletePaymentForwardByID(forwardID); err != nil {
+		t.Fatal(err)
+	}
+	t.Skip()
 	if resp, err := c.GetPaymentForwardByID(testPaymentForwardID); err != nil {
 		t.Fatal(err)
 	} else if resp == nil {
@@ -43,15 +56,6 @@ func TestChainRiderGo(t *testing.T) {
 			t.Fatal(err)
 		}
 		fmt.Println(parsedTime)
-	}
-
-	t.Skip()
-	if resp, err := c.CreatePaymentForward(&dash.PaymentForwardOpts{DestinationAddress: testDestinationAddress}); err != nil {
-		t.Fatal(err)
-	} else if resp == nil {
-		t.Fatal("resp is nil but no error occured, unexpected issue")
-	} else {
-		fmt.Printf("%+v\n", resp)
 	}
 	if resp, err := c.GetRateLimit(); err != nil {
 		t.Fatal(err)

@@ -66,7 +66,7 @@ func (c *Client) GetPaymentForwardByID(id string) (*GetPaymentForwardByIDRespons
 
 // DeletePaymentForwardByID is used to delete a particular payment forward rule
 func (c *Client) DeletePaymentForwardByID(id string) error {
-	url := fmt.Sprintf("%s/paymentforward%s?token=%s", c.URL, id, c.Token)
+	url := fmt.Sprintf("%s/paymentforward/%s?token=%s", c.URL, id, c.Token)
 	req, err := http.NewRequest("DELETE", url, nil)
 	if err != nil {
 		return err
