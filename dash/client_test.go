@@ -14,15 +14,15 @@ const (
 	testAddress            = "XrWe3E96h7QDRkvwgqY4LmdPBE9txYPfrV"
 	testBlockHash          = "0000000000000004689b8833fa05a687a042650e4f4e8da9953a5e0dba5fc1a0"
 	testDestinationAddress = "yfLFuyfSNHNtwKbfaGXh17maGKAAgd2A4z"
-	testPaymentForwardID1  = "ijZVxkhB5LmgGSAF8xLnW5OHbHJV4Pxz"
+	testPaymentForwardID1  = "Uu0smyqh8mRAOOPZLtV71zYBJzpwpBZt"
 	testPaymentForwardID2  = "9risbkgOTkKHq18X198zikCza8GuTJfO"
 )
 
 func TestChainRiderGo(t *testing.T) {
 	token := os.Getenv("TOKEN")
-	/*if token == "" {
+	if token == "" {
 		t.Fatal("TOKEN env var is empty")
-	}*/
+	}
 	opts := dash.ConfigOpts{
 		APIVersion:      "v1",
 		DigitalCurrency: "dash",
