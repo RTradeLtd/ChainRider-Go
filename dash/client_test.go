@@ -29,10 +29,8 @@ func TestChainRiderGo(t *testing.T) {
 		Blockchain:      "testnet",
 		Token:           token,
 	}
-	c, err := dash.NewClient(&opts)
-	if err != nil {
-		t.Fatal(err)
-	}
+	c := dash.NewClient(&opts)
+
 	var forwardID string
 	if resp, err := c.CreatePaymentForward(&dash.PaymentForwardOpts{DestinationAddress: testDestinationAddress}); err != nil {
 		t.Fatal(err)
@@ -42,7 +40,7 @@ func TestChainRiderGo(t *testing.T) {
 		forwardID = resp.PaymentForwardID
 		fmt.Printf("%+v\n", resp)
 	}
-	if err = c.DeletePaymentForwardByID(forwardID); err != nil {
+	if err := c.DeletePaymentForwardByID(forwardID); err != nil {
 		t.Fatal(err)
 	}
 	t.Skip()
