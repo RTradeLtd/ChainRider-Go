@@ -44,7 +44,9 @@ Supported calls for the DASH ChainRider API
 ### Payments
 
 * Create Payment Forward
-  * Note that the only supported option for this call at the moment is the address it forwards to
+  * Supported parameters:
+    * destination address (required)
+    * callback url (optional)
 
 * Get Payment Forward By ID
 
